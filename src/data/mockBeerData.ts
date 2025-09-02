@@ -2,7 +2,6 @@ export type Beer = {
   id: number;
   tapNumber: number;
   name: string;
-  brewery: string;
   style: string;
   abv: number;
   ibu?: number;
@@ -17,7 +16,6 @@ export const mockBeers: Beer[] = [
     id: 1,
     tapNumber: 1,
     name: "Hazy IPA",
-    brewery: "Hop Heaven Brewing",
     style: "New England IPA",
     abv: 6.5,
     ibu: 45,
@@ -29,7 +27,6 @@ export const mockBeers: Beer[] = [
     id: 2,
     tapNumber: 2,
     name: "Midnight Stout",
-    brewery: "Dark Side Brewery",
     style: "Imperial Stout",
     abv: 9.2,
     ibu: 35,
@@ -41,7 +38,6 @@ export const mockBeers: Beer[] = [
     id: 3,
     tapNumber: 3,
     name: "Golden Wheat",
-    brewery: "Sunny Days Brewing",
     style: "Hefeweizen",
     abv: 4.8,
     ibu: 15,
@@ -52,7 +48,6 @@ export const mockBeers: Beer[] = [
     id: 4,
     tapNumber: 4,
     name: "Pilsner Perfect",
-    brewery: "Classic Craft Co.",
     style: "Czech Pilsner",
     abv: 4.9,
     ibu: 32,
@@ -63,7 +58,6 @@ export const mockBeers: Beer[] = [
     id: 5,
     tapNumber: 5,
     name: "Amber Ale",
-    brewery: "Copper Creek Brewing",
     style: "American Amber Ale",
     abv: 5.4,
     ibu: 28,
@@ -74,7 +68,6 @@ export const mockBeers: Beer[] = [
     id: 6,
     tapNumber: 6,
     name: "Sour Cherry Bomb",
-    brewery: "Wild Fermentation",
     style: "Sour Ale",
     abv: 5.8,
     ibu: 8,
@@ -85,7 +78,6 @@ export const mockBeers: Beer[] = [
     id: 7,
     tapNumber: 7,
     name: "West Coast IPA",
-    brewery: "Pacific Hops Brewing",
     style: "American IPA",
     abv: 7.2,
     ibu: 68,
@@ -96,7 +88,6 @@ export const mockBeers: Beer[] = [
     id: 8,
     tapNumber: 8,
     name: "Belgian Wit",
-    brewery: "Old World Ales",
     style: "Witbier",
     abv: 4.5,
     ibu: 20,
