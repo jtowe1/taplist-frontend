@@ -14,19 +14,19 @@ export const StyleBadge: React.FC<StyleBadgeProps> = ({
   const sizeConfig = {
     sm: {
       text: 'sm',
-      icon: 4,
+      icon: 8,
       px: 2,
       py: 1
     },
     md: {
       text: { base: "md", lg: "lg", xl: "xl" },
-      icon: { base: 4, lg: 5 },
+      icon: { base: 8, lg: 10 },
       px: 3,
       py: 1.5
     },
     lg: {
       text: { base: "lg", lg: "xl", xl: "2xl" },
-      icon: { base: 5, lg: 6 },
+      icon: { base: 10, lg: 12 },
       px: 4,
       py: 2
     }
@@ -109,9 +109,9 @@ export const StyleBadge: React.FC<StyleBadgeProps> = ({
 
     switch (styleConfig.icon) {
       case 'hop':
-        return <HopIcon {...iconProps} variant="outline" />
+        return <HopIcon {...iconProps} />
       case 'barley':
-        return <BarleyIcon {...iconProps} variant="single" />
+        return <BarleyIcon {...iconProps} />
       default:
         return <BeerGlassIcon {...iconProps} />
     }

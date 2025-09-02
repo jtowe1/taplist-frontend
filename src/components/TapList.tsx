@@ -20,12 +20,8 @@ export const TapList: React.FC = () => {
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(5, 1fr)" }}
           gap={{ base: 8, "2xl": 12 }}
         >
-          {mockBeers.map((beer, index) => (
-            <Box
-              key={beer.id}
-              opacity={0}
-              animation={`fadeInUp 0.8s ease-out ${index * 150}ms forwards`}
-            >
+          {mockBeers.map((beer) => (
+            <Box key={beer.id}>
               <TapCard beer={beer} />
             </Box>
           ))}

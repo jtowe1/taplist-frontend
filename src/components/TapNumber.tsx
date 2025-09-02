@@ -70,11 +70,6 @@ export const TapNumber: React.FC<TapNumberProps> = ({
           borderRadius: 'lg',
           pointerEvents: 'none'
         }}
-        transition="all 0.3s ease"
-        _hover={{
-          transform: 'scale(1.05)',
-          shadow: 'xl'
-        }}
       >
         {/* Tap Number */}
         <Text

@@ -19,19 +19,19 @@ export const StatsBadge: React.FC<StatsBadgeProps> = ({
     sm: {
       badge: { px: 2, py: 1, borderRadius: 'md' },
       text: 'sm',
-      icon: 3,
+      icon: 8,
       spacing: 1
     },
     md: {
       badge: { px: 3, py: 1.5, borderRadius: 'lg' },
       text: { base: "md", lg: "lg" },
-      icon: { base: 3, lg: 4 },
+      icon: { base: 8, lg: 10 },
       spacing: 2
     },
     lg: {
       badge: { px: 4, py: 2, borderRadius: 'xl' },
       text: { base: "lg", lg: "xl" },
-      icon: { base: 4, lg: 5 },
+      icon: { base: 10, lg: 12 },
       spacing: 3
     }
   }
@@ -196,7 +196,6 @@ export const StatsBadge: React.FC<StatsBadgeProps> = ({
             boxSize={config.icon}
             color="white"
             opacity={0.9}
-            variant="single"
           />
         }
       />
@@ -213,7 +212,6 @@ export const StatsBadge: React.FC<StatsBadgeProps> = ({
               boxSize={config.icon}
               color="white"
               opacity={0.9}
-              variant="outline"
             />
           }
         />

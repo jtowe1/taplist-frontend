@@ -7,6 +7,7 @@ import {
   HStack,
   Circle,
 } from '@chakra-ui/react';
+import { BeerGlassIcon, HopIcon, BarleyIcon } from './icons';
 import type { Beer } from '../data/mockBeerData';
 
 interface TapCardProps {
@@ -18,11 +19,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
     <Box
       position="relative"
       overflow="hidden"
-      transition="all 0.5s ease"
-      role="group"
-      _hover={{
-        transform: 'scale(1.02) translateY(-2px)',
-      }}
     >
       {/* Craft Beer Card Container */}
       <Box
@@ -34,12 +30,8 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
         p={6}
         shadow="2xl"
         minH="md"
-        transition="all 0.5s ease"
-        _groupHover={{
-          borderColor: 'orange.400',
-          shadow: 'dark-lg',
-          bg: 'gray.900'
-        }}
+        borderColor="orange.400"
+        shadow="dark-lg"
         _before={{
           content: '""',
           position: 'absolute',
@@ -47,7 +39,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           bgGradient: 'linear(135deg, whiteAlpha.100, transparent, whiteAlpha.50)',
           borderRadius: 'xl',
           pointerEvents: 'none',
-          transition: 'opacity 0.5s',
           opacity: 0.7
         }}
         _after={{
@@ -56,14 +47,24 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           inset: 0,
           bgGradient: 'linear(45deg, orange.400, transparent, orange.500)',
           borderRadius: '2xl',
-          opacity: 0,
-          transition: 'opacity 0.5s',
-          pointerEvents: 'none',
-          _groupHover: {
-            opacity: 0.1
-          }
+          opacity: 0.1,
+          pointerEvents: 'none'
         }}
       >
+        {/* Decorative Hop Corner */}
+        <Box
+          position="absolute"
+          top="4"
+          right="4"
+          opacity={0.4}
+          zIndex={1}
+        >
+          <HopIcon
+            boxSize={12}
+            color="green.400"
+          />
+        </Box>
+
         {/* Tap Number Section */}
         <Box mb={6} position="relative" zIndex={2}>
           <Box position="relative" display="inline-block">
@@ -104,7 +105,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           </Box>
         </Box>
 
-        {/* Beer Style */}
+        {/* Beer Style with Icon */}
         <Box mb={4} position="relative" zIndex={2}>
           <Box
             bgGradient="linear(to-r, orange.500, orange.600)"
@@ -125,18 +126,23 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
               borderRadius: 'lg'
             }}
           >
-            <Text
-              fontFamily="'Source Sans Pro', sans-serif"
-              fontSize={{ base: "md", lg: "lg", xl: "xl" }}
-              color="white"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              textShadow="1px 1px 2px rgba(0,0,0,0.7)"
-              position="relative"
-              zIndex={1}
-            >
-              {beer.style}
-            </Text>
+            <HStack gap={2} position="relative" zIndex={1}>
+              {beer.style.toLowerCase().includes('ipa') ? (
+                <HopIcon boxSize={8} color="white" opacity={0.9} />
+              ) : (
+                <BarleyIcon boxSize={8} color="white" opacity={0.9} />
+              )}
+              <Text
+                fontFamily="'Source Sans Pro', sans-serif"
+                fontSize={{ base: "md", lg: "lg", xl: "xl" }}
+                color="white"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                textShadow="1px 1px 2px rgba(0,0,0,0.7)"
+              >
+                {beer.style}
+              </Text>
+            </HStack>
           </Box>
         </Box>
 
@@ -151,11 +157,8 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             color="white"
             mb={2}
             textShadow="2px 2px 4px rgba(0,0,0,0.8)"
-            _groupHover={{
-              color: 'orange.300',
-              textShadow: '2px 2px 8px rgba(210, 105, 30, 0.5)'
-            }}
-            transition="all 0.3s"
+            color="orange.300"
+            textShadow="2px 2px 8px rgba(210, 105, 30, 0.5)"
           >
             {beer.name}
           </Text>
@@ -166,15 +169,14 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             h="1"
             bgGradient="linear(to-r, orange.400, orange.600)"
             borderRadius="full"
-            transition="width 0.5s ease"
-            _groupHover={{ w: "full" }}
+            w="full"
           />
         </Box>
 
-        {/* Stats Section */}
+        {/* Stats Section with Icons */}
         <HStack gap={6} mb={6} position="relative" zIndex={2}>
           <HStack gap={2}>
-            <Circle size={2} bg="orange.400" />
+            <BarleyIcon boxSize={8} color="orange.400" />
             <Text color="white" fontWeight="bold" fontSize="lg">
               {beer.abv}%
             </Text>
@@ -184,7 +186,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           </HStack>
           {beer.ibu && (
             <HStack gap={2}>
-              <Circle size={2} bg="orange.400" />
+              <HopIcon boxSize={8} color="green.400" />
               <Text color="white" fontWeight="bold" fontSize="lg">
                 {beer.ibu}
               </Text>
@@ -210,11 +212,8 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden'
               }}
-              _groupHover={{
-                color: 'white',
-                opacity: 1
-              }}
-              transition="all 0.3s"
+              color="white"
+              opacity={1}
             >
               {beer.description}
             </Text>
@@ -228,50 +227,26 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           h="1"
           bgGradient="linear(to-r, transparent, orange.400, transparent)"
           opacity={0.4}
-          _groupHover={{ opacity: 0.7 }}
-          transition="opacity 0.3s"
+          opacity={0.7}
           position="relative"
           zIndex={2}
         />
 
-        {/* Price Section */}
+        {/* Price Section with Beer Glass */}
         <Box position="relative" zIndex={2}>
-          <Flex align="flex-end" justify="flex-end">
-            <VStack align="flex-end" gap={0}>
-              <HStack align="baseline" gap={1}>
-                <Text
-                  fontSize="sm"
-                  color="gray.400"
-                  fontWeight="medium"
-                >
-                  $
-                </Text>
-                <Text
-                  fontFamily="'Oswald', sans-serif"
-                  fontSize={{ base: "3xl", lg: "4xl", xl: "5xl" }}
-                  fontWeight="black"
-                  lineHeight="none"
-                  bgGradient="linear(to-r, orange.400, orange.500, orange.600)"
-                  bgClip="text"
-                  textShadow="2px 2px 4px rgba(0,0,0,0.3)"
-                  _groupHover={{
-                    bgGradient: "linear(to-r, yellow.300, orange.400, orange.300)",
-                    textShadow: "3px 3px 6px rgba(218, 165, 32, 0.4)"
-                  }}
-                  transition="all 0.3s"
-                >
-                  {beer.price.toFixed(2)}
-                </Text>
-              </HStack>
-              <Text
-                fontSize={{ base: "xs", lg: "sm" }}
-                color="gray.400"
-                fontWeight="medium"
-                opacity={0.8}
-              >
-                per pint
-              </Text>
-            </VStack>
+          <Flex align="flex-end" justify="space-between">
+            {/* Beer Glass Icon */}
+            <Box
+              opacity={0.6}
+              opacity={1}
+              transform="translateY(-2px)"
+            >
+              <BeerGlassIcon
+                boxSize={16}
+                color="orange.500"
+              />
+            </Box>
+
           </Flex>
         </Box>
 
@@ -281,9 +256,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           inset={0}
           borderRadius="2xl"
           bgGradient="radial(circle at 50% 0%, orange.400, transparent 70%)"
-          opacity={0}
-          _groupHover={{ opacity: 0.15 }}
-          transition="opacity 0.5s"
+          opacity={0.15}
           pointerEvents="none"
           zIndex={0}
         />
