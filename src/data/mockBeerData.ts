@@ -63,35 +63,5 @@ export const mockBeers: Beer[] = [
     ibu: 28,
     price: 6.75,
     description: "Balanced malt sweetness with caramel notes"
-  },
-  {
-    id: 6,
-    tapNumber: 6,
-    name: "Sour Cherry Bomb",
-    style: "Sour Ale",
-    abv: 5.8,
-    ibu: 8,
-    price: 8.50,
-    description: "Tart cherry flavors with funky wild yeast"
-  },
-  {
-    id: 7,
-    tapNumber: 7,
-    name: "West Coast IPA",
-    style: "American IPA",
-    abv: 7.2,
-    ibu: 68,
-    price: 7.25,
-    description: "Pine and citrus with a bitter finish"
-  },
-  {
-    id: 8,
-    tapNumber: 8,
-    name: "Belgian Wit",
-    style: "Witbier",
-    abv: 4.5,
-    ibu: 20,
-    price: 6.25,
-    description: "Coriander and orange peel with wheat backbone"
   }
 ];
