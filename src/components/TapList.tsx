@@ -2,13 +2,7 @@ import React from 'react';
 import {
   Box,
   Container,
-  Text,
-  Heading,
   Grid,
-  Flex,
-  HStack,
-  VStack,
-  Circle,
 } from '@chakra-ui/react';
 import { TapCard } from './TapCard';
 import { mockBeers } from '../data/mockBeerData';
