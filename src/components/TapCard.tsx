@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  Box,
+  Text,
+  Flex,
+  VStack,
+  HStack,
+  Circle,
+} from '@chakra-ui/react';
 import type { Beer } from '../data/mockBeerData';
 
 interface TapCardProps {
@@ -7,50 +15,175 @@ interface TapCardProps {
 
 export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
   return (
-    <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-      {/* Tap Number Badge */}
-      <div className="flex justify-between items-start mb-4">
-        <div className="bg-amber-500 text-black font-bold text-xl px-3 py-1 rounded-full">
-          {beer.tapNumber}
-        </div>
-        <div className="flex gap-2">
-          {beer.isNew && (
-            <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full font-medium">
-              NEW
-            </span>
+    <Box
+      position="relative"
+      overflow="hidden"
+      _groupHover={{
+        transform: 'scale(1.02)',
+        borderColor: 'orange.400',
+      }}
+      transition="all 0.5s"
+      role="group"
+    >
+      <Box
+        position="relative"
+        backdropFilter="blur(16px)"
+        bgGradient="linear(to-br, whiteAlpha.100, whiteAlpha.50, whiteAlpha.100)"
+        border="1px solid"
+        borderColor="whiteAlpha.200"
+        borderRadius="2xl"
+        p={6}
+        shadow="2xl"
+        _groupHover={{
+          shadow: 'dark-lg',
+          borderColor: 'orange.400',
+        }}
+        transition="all 0.5s"
+      >
+        {/* Background Glow Effect */}
+        <Box
+          position="absolute"
+          inset={0}
+          bgGradient="linear(to-br, orange.500, transparent, orange.500)"
+          borderRadius="2xl"
+          opacity={0}
+          _groupHover={{ opacity: 0.05 }}
+          transition="opacity 0.5s"
+        />
+        
+        {/* Header with Tap Number */}
+        <Box mb={6} position="relative">
+          {/* Modern Tap Number */}
+          <Box position="relative" display="inline-block">
+            <Box
+              bgGradient="linear(to-r, orange.400, orange.500)"
+              color="white"
+              fontWeight="black"
+              fontSize={{ base: "xl", lg: "2xl", xl: "3xl" }}
+              px={4}
+              py={2}
+              borderRadius="xl"
+              shadow="lg"
+            >
+              {beer.tapNumber}
+            </Box>
+            <Circle
+              position="absolute"
+              top="-1"
+              right="-1"
+              size={{ base: 3, lg: 4 }}
+              bgGradient="linear(to-r, yellow.300, orange.400)"
+              opacity={0.8}
+              animation="pulse 2s infinite"
+            />
+          </Box>
+        </Box>
+
+        {/* Beer Name */}
+        <Box position="relative" mb={4}>
+          <Text
+            fontSize={{ base: "2xl", lg: "3xl", xl: "4xl" }}
+            fontWeight="black"
+            bgGradient="linear(to-r, white, whiteAlpha.900)"
+            bgClip="text"
+            mb={2}
+            lineHeight="tight"
+          >
+            {beer.name}
+          </Text>
+        </Box>
+
+        {/* Style */}
+        <Box mb={4}>
+          <Text
+            fontSize={{ base: "lg", lg: "xl", xl: "2xl" }}
+            color="orange.200"
+            opacity={0.9}
+            fontWeight="semibold"
+            letterSpacing="wide"
+          >
+            {beer.style}
+          </Text>
+        </Box>
+
+        {/* Stats Row */}
+        <HStack gap={6} mb={6}>
+          <HStack gap={2}>
+            <Circle size={2} bg="orange.400" />
+            <Text color="whiteAlpha.900" fontWeight="bold" fontSize="lg">
+              {beer.abv}%
+            </Text>
+            <Text color="whiteAlpha.600" fontSize="sm">
+              ABV
+            </Text>
+          </HStack>
+          {beer.ibu && (
+            <HStack gap={2}>
+              <Circle size={2} bg="orange.400" />
+              <Text color="whiteAlpha.900" fontWeight="bold" fontSize="lg">
+                {beer.ibu}
+              </Text>
+              <Text color="whiteAlpha.600" fontSize="sm">
+                IBU
+              </Text>
+            </HStack>
           )}
-          {beer.isFeatured && (
-            <span className="bg-red-600 text-white text-xs px-2 py-1 rounded-full font-medium">
-              FEATURED
-            </span>
-          )}
-        </div>
-      </div>
+        </HStack>
 
-      {/* Beer Info */}
-      <div className="mb-4">
-        <h3 className="text-2xl font-bold text-white mb-1">{beer.name}</h3>
-      </div>
+        {/* Description */}
+        {beer.description && (
+          <Box mb={6}>
+            <Text
+              color="whiteAlpha.800"
+              fontSize="base"
+              lineHeight="relaxed"
+              css={{
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
+              }}
+            >
+              {beer.description}
+            </Text>
+          </Box>
+        )}
 
-      {/* Style and ABV */}
-      <div className="mb-4">
-        <p className="text-gray-300 text-lg mb-1">{beer.style}</p>
-        <div className="flex items-center gap-4 text-sm text-gray-400">
-          <span>{beer.abv}% ABV</span>
-          {beer.ibu && <span>{beer.ibu} IBU</span>}
-        </div>
-      </div>
+        {/* Price Section */}
+        <Box position="relative">
+          <Flex align="flex-end" justify="flex-end">
+            <VStack align="flex-end" gap={0}>
+              <Text
+                fontSize={{ base: "3xl", lg: "4xl", xl: "5xl" }}
+                fontWeight="black"
+                bgGradient="linear(to-r, orange.300, orange.400, orange.500)"
+                bgClip="text"
+              >
+                ${beer.price.toFixed(2)}
+              </Text>
+              <Text
+                color="whiteAlpha.600"
+                fontSize={{ base: "sm", lg: "base" }}
+                fontWeight="medium"
+              >
+                per pint
+              </Text>
+            </VStack>
+          </Flex>
+        </Box>
 
-      {/* Description */}
-      {beer.description && (
-        <p className="text-gray-300 text-sm mb-4 line-clamp-2">{beer.description}</p>
-      )}
-
-      {/* Price */}
-      <div className="text-right">
-        <span className="text-3xl font-bold text-amber-500">${beer.price.toFixed(2)}</span>
-        <span className="text-gray-400 text-sm ml-1">/ pint</span>
-      </div>
-    </div>
+        {/* Subtle Border Glow */}
+        <Box
+          position="absolute"
+          inset={0}
+          borderRadius="2xl"
+          bgGradient="linear(to-r, orange.400, transparent, orange.400)"
+          opacity={0}
+          _groupHover={{ opacity: 0.2 }}
+          transition="opacity 0.5s"
+          pointerEvents="none"
+        />
+      </Box>
+    </Box>
   );
 };
