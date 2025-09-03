@@ -92,16 +92,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             >
               {beer.tapNumber}
             </Box>
-            <Circle
-              position="absolute"
-              top="-1"
-              right="-1"
-              size={{ base: 3, lg: 4 }}
-              bg="yellow.400"
-              opacity={0.9}
-              animation="pulse 2s infinite"
-              shadow="md"
-            />
           </Box>
         </Box>
 
@@ -185,15 +175,44 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             </Text>
           </HStack>
           {beer.ibu && (
-            <HStack gap={2}>
-              <HopIcon boxSize={8} color="green.400" />
-              <Text color="white" fontWeight="bold" fontSize="lg">
-                {beer.ibu}
-              </Text>
-              <Text color="gray.400" fontSize="sm">
+            <VStack gap={1} align="flex-start">
+              <Text color="gray.400" fontSize="sm" mb={1}>
                 IBU
               </Text>
-            </HStack>
+              <HStack gap={1}>
+                {Array.from({ length: 5 }, (_, i) => {
+                  // Calculate how filled this hop should be (0-100%)
+                  // Scale IBU 0-100+ to 5 icons
+                  const hopThreshold = (i + 1) * 20; // 20, 40, 60, 80, 100
+                  const fillPercentage = Math.max(0, Math.min(100, ((beer.ibu - (i * 20)) / 20) * 100));
+                  
+                  return (
+                    <Box key={i} position="relative">
+                      <HopIcon 
+                        boxSize={6} 
+                        color="gray.600" 
+                      />
+                      <Box
+                        position="absolute"
+                        top={0}
+                        left={0}
+                        right={0}
+                        bottom={0}
+                        overflow="hidden"
+                        style={{
+                          clipPath: `inset(${100 - fillPercentage}% 0 0 0)`
+                        }}
+                      >
+                        <HopIcon 
+                          boxSize={6} 
+                          color="green.400" 
+                        />
+                      </Box>
+                    </Box>
+                  );
+                })}
+              </HStack>
+            </VStack>
           )}
         </HStack>
 
