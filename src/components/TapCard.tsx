@@ -5,7 +5,6 @@ import {
   Flex,
   VStack,
   HStack,
-  Circle,
 } from '@chakra-ui/react';
 import { BeerGlassIcon, HopIcon, BarleyIcon } from './icons';
 import type { Beer } from '../data/mockBeerData';
@@ -25,13 +24,11 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
         position="relative"
         bg="gray.800"
         border="2px solid"
-        borderColor="gray.600"
+        borderColor="orange.400"
         borderRadius="2xl"
         p={6}
-        shadow="2xl"
-        minH="md"
-        borderColor="orange.400"
         shadow="dark-lg"
+        minH="md"
         _before={{
           content: '""',
           position: 'absolute',
@@ -144,10 +141,8 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             fontWeight="black"
             lineHeight="shorter"
             letterSpacing="tight"
-            color="white"
-            mb={2}
-            textShadow="2px 2px 4px rgba(0,0,0,0.8)"
             color="orange.300"
+            mb={2}
             textShadow="2px 2px 8px rgba(210, 105, 30, 0.5)"
           >
             {beer.name}
@@ -155,11 +150,10 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           
           {/* Decorative Underline */}
           <Box
-            w="0"
+            w="full"
             h="1"
             bgGradient="linear(to-r, orange.400, orange.600)"
             borderRadius="full"
-            w="full"
           />
         </Box>
 
@@ -183,8 +177,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
                 {Array.from({ length: 5 }, (_, i) => {
                   // Calculate how filled this hop should be (0-100%)
                   // Scale IBU 0-100+ to 5 icons
-                  const hopThreshold = (i + 1) * 20; // 20, 40, 60, 80, 100
-                  const fillPercentage = Math.max(0, Math.min(100, ((beer.ibu - (i * 20)) / 20) * 100));
+                  const fillPercentage = Math.max(0, Math.min(100, (((beer.ibu || 0) - (i * 20)) / 20) * 100));
                   
                   return (
                     <Box key={i} position="relative">
@@ -223,16 +216,14 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
               fontFamily="'Source Sans Pro', sans-serif"
               fontSize="md"
               lineHeight="base"
-              color="gray.300"
-              opacity={0.9}
+              color="white"
+              opacity={1}
               css={{
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden'
               }}
-              color="white"
-              opacity={1}
             >
               {beer.description}
             </Text>
@@ -245,7 +236,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           w="full"
           h="1"
           bgGradient="linear(to-r, transparent, orange.400, transparent)"
-          opacity={0.4}
           opacity={0.7}
           position="relative"
           zIndex={2}
@@ -256,7 +246,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           <Flex align="flex-end" justify="space-between">
             {/* Beer Glass Icon */}
             <Box
-              opacity={0.6}
               opacity={1}
               transform="translateY(-2px)"
             >

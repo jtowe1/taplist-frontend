@@ -102,16 +102,20 @@ export const StatsBadge: React.FC<StatsBadgeProps> = ({
   const StatBadge: React.FC<{
     value: number
     unit: string
-    config: any
+    config: {
+      color: string
+      bgGradient: string
+      intensity: string
+    }
     icon: React.ReactNode
     label: string
-  }> = ({ value, unit, config, icon, label }) => (
+  }> = ({ value, unit, config: colorConfig, icon, label }) => (
     <Box
-      bgGradient={config.bgGradient}
+      bgGradient={colorConfig.bgGradient}
       {...config.badge}
       shadow="md"
       border="1px solid"
-      borderColor={config.color}
+      borderColor={colorConfig.color}
       position="relative"
       overflow="hidden"
       _before={{
