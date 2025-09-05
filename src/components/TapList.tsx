@@ -15,10 +15,10 @@ export const TapList: React.FC = () => {
       color="white"
     >
       {/* Beer Grid - Optimized for Wall Display */}
-      <Container maxW={{ base: "7xl", "2xl": "8xl" }} px={8} py={12}>
+      <Container maxW="100%" px={4} py={4}>
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(5, 1fr)" }}
-          gap={{ base: 8, "2xl": 12 }}
+          gap={{ base: 4, md: 6, lg: 4 }}
         >
           {mockBeers.map((beer) => (
             <Box key={beer.id}>

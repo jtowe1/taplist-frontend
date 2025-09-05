@@ -28,7 +28,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
         borderRadius="2xl"
         p={6}
         shadow="dark-lg"
-        minH="md"
+        height="xl"
         _before={{
           content: '""',
           position: 'absolute',
@@ -120,11 +120,18 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             fontFamily="'Oswald', sans-serif"
             fontSize={{ base: "4xl", lg: "5xl", xl: "6xl" }}
             fontWeight="black"
-            lineHeight="shorter"
-            letterSpacing="tight"
+            lineHeight="1.1"
+            letterSpacing="-0.025em"
             color="orange.300"
             mb={2}
             textShadow="2px 2px 8px rgba(210, 105, 30, 0.5)"
+            minHeight={{ base: "120px", lg: "160px", xl: "192px" }}
+            css={{
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden'
+            }}
           >
             {beer.name}
           </Text>
