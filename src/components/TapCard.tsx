@@ -3,10 +3,9 @@ import {
   Box,
   Text,
   Flex,
-  VStack,
   HStack,
 } from '@chakra-ui/react';
-import { BeerGlassIcon, HopIcon, BarleyIcon } from './icons';
+import { BeerGlassIcon, HopIcon } from './icons';
 import type { Beer } from '../data/mockBeerData';
 
 interface TapCardProps {
@@ -48,20 +47,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           pointerEvents: 'none'
         }}
       >
-        {/* Decorative Hop Corner */}
-        <Box
-          position="absolute"
-          top="4"
-          right="4"
-          opacity={0.4}
-          zIndex={1}
-        >
-          <HopIcon
-            boxSize={12}
-            color="green.400"
-          />
-        </Box>
-
         {/* Tap Number Section */}
         <Box mb={6} position="relative" zIndex={2}>
           <Box position="relative" display="inline-block">
@@ -114,11 +99,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
             }}
           >
             <HStack gap={2} position="relative" zIndex={1}>
-              {beer.style.toLowerCase().includes('ipa') ? (
-                <HopIcon boxSize={8} color="white" opacity={0.9} />
-              ) : (
-                <BarleyIcon boxSize={8} color="white" opacity={0.9} />
-              )}
               <Text
                 fontFamily="'Source Sans Pro', sans-serif"
                 fontSize={{ base: "md", lg: "lg", xl: "xl" }}
@@ -160,7 +140,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
         {/* Stats Section with Icons */}
         <HStack gap={6} mb={6} position="relative" zIndex={2}>
           <HStack gap={2}>
-            <BarleyIcon boxSize={8} color="orange.400" />
             <Text color="white" fontWeight="bold" fontSize="lg">
               {beer.abv}%
             </Text>
@@ -168,45 +147,46 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
               ABV
             </Text>
           </HStack>
-          {beer.ibu && (
-            <VStack gap={1} align="flex-start">
-              <Text color="gray.400" fontSize="sm" mb={1}>
-                IBU
-              </Text>
-              <HStack gap={1}>
-                {Array.from({ length: 5 }, (_, i) => {
-                  // Calculate how filled this hop should be (0-100%)
-                  // Scale IBU 0-100+ to 5 icons
-                  const fillPercentage = Math.max(0, Math.min(100, (((beer.ibu || 0) - (i * 20)) / 20) * 100));
+          <HStack gap={2}>
+            <Text color="white" fontWeight="bold" fontSize="lg">
+              {beer.ibu}
+            </Text>
+            <Text color="gray.400" fontSize="sm">
+              IBU
+            </Text>
+          </HStack>
+          <HStack gap={1}>
+            {Array.from({ length: 5 }, (_, i) => {
+              // Calculate how filled this hop should be (0-100%)
+              // Scale IBU 0-100+ to 5 icons
+              const fillPercentage = Math.max(0, Math.min(100, (((beer.ibu || 0) - (i * 20)) / 20) * 100));
 
-                  return (
-                    <Box key={i} position="relative">
-                      <HopIcon
-                        boxSize={6}
-                        color="gray.600"
-                      />
-                      <Box
-                        position="absolute"
-                        top={0}
-                        left={0}
-                        right={0}
-                        bottom={0}
-                        overflow="hidden"
-                        style={{
-                          clipPath: `inset(${100 - fillPercentage}% 0 0 0)`
-                        }}
-                      >
-                        <HopIcon
-                          boxSize={6}
-                          color="green.400"
-                        />
-                      </Box>
-                    </Box>
-                  );
-                })}
-              </HStack>
-            </VStack>
-          )}
+              return (
+                <Box key={i} position="relative">
+                  <HopIcon
+                    boxSize={6}
+                    color="gray.600"
+                  />
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    overflow="hidden"
+                    style={{
+                      clipPath: `inset(${100 - fillPercentage}% 0 0 0)`
+                    }}
+                  >
+                    <HopIcon
+                      boxSize={6}
+                      color="green.400"
+                    />
+                  </Box>
+                </Box>
+              );
+            })}
+          </HStack>
         </HStack>
 
         {/* Description */}
