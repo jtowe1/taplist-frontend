@@ -7,6 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { BeerGlassIcon, HopIcon } from './icons';
 import type { Beer } from '../data/mockBeerData';
+import { getSrmColor } from '../utils/srmColors';
 
 interface TapCardProps {
   beer: Beer;
@@ -210,17 +211,6 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           </Box>
         )}
 
-        {/* Decorative Divider */}
-        <Box
-          mb={4}
-          w="full"
-          h="1"
-          bgGradient="linear(to-r, transparent, orange.400, transparent)"
-          opacity={0.7}
-          position="relative"
-          zIndex={2}
-        />
-
         {/* Price Section with Beer Glass */}
         <Box position="relative" zIndex={2}>
           <Flex align="flex-end" justify="space-between">
@@ -232,6 +222,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
               <BeerGlassIcon
                 boxSize={16}
                 color="orange.500"
+                fillColor={getSrmColor(beer.srm)}
               />
             </Box>
 

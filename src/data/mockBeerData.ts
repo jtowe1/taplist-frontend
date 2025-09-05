@@ -5,6 +5,7 @@ export type Beer = {
   style: string;
   abv: number;
   ibu?: number;
+  srm?: number;
   price: number;
   description?: string;
   isNew?: boolean;
@@ -19,6 +20,7 @@ export const mockBeers: Beer[] = [
     style: "New England IPA",
     abv: 6.5,
     ibu: 45,
+    srm: 4,
     price: 7.50,
     description: "Juicy citrus and tropical fruit flavors",
     isNew: true
@@ -30,6 +32,7 @@ export const mockBeers: Beer[] = [
     style: "Imperial Stout",
     abv: 9.2,
     ibu: 35,
+    srm: 35,
     price: 8.00,
     description: "Rich chocolate and coffee notes",
     isFeatured: true
@@ -41,6 +44,7 @@ export const mockBeers: Beer[] = [
     style: "Hefeweizen",
     abv: 4.8,
     ibu: 15,
+    srm: 3,
     price: 6.50,
     description: "Light and refreshing with banana esters"
   },
@@ -51,6 +55,7 @@ export const mockBeers: Beer[] = [
     style: "Czech Pilsner",
     abv: 4.9,
     ibu: 32,
+    srm: 2,
     price: 6.00,
     description: "Crisp and clean with noble hop character"
   },
@@ -61,6 +66,7 @@ export const mockBeers: Beer[] = [
     style: "American Amber Ale",
     abv: 5.4,
     ibu: 28,
+    srm: 10,
     price: 6.75,
     description: "Balanced malt sweetness with caramel notes"
   }

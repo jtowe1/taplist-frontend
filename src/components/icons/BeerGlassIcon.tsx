@@ -1,6 +1,11 @@
-import { createIcon } from '@chakra-ui/react'
+import React from 'react'
+import { createIcon, type IconProps } from '@chakra-ui/react'
 
-export const BeerGlassIcon = createIcon({
+interface BeerGlassIconProps extends IconProps {
+  fillColor?: string;
+}
+
+const BaseBeerGlassIcon = createIcon({
   displayName: 'BeerGlassIcon',
   viewBox: '0 0 24 24',
   path: (
@@ -23,3 +28,21 @@ export const BeerGlassIcon = createIcon({
     </g>
   ),
 })
+
+export const BeerGlassIcon: React.FC<BeerGlassIconProps> = ({ fillColor, ...props }) => {
+  if (!fillColor) {
+    return <BaseBeerGlassIcon {...props} />
+  }
+  
+  // If fillColor is provided, render with custom fill
+  return (
+    <BaseBeerGlassIcon
+      {...props}
+      css={{
+        '& path:first-of-type': {
+          fill: fillColor
+        }
+      }}
+    />
+  )
+}
