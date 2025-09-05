@@ -147,7 +147,7 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
           >
             {beer.name}
           </Text>
-          
+
           {/* Decorative Underline */}
           <Box
             w="full"
@@ -178,12 +178,12 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
                   // Calculate how filled this hop should be (0-100%)
                   // Scale IBU 0-100+ to 5 icons
                   const fillPercentage = Math.max(0, Math.min(100, (((beer.ibu || 0) - (i * 20)) / 20) * 100));
-                  
+
                   return (
                     <Box key={i} position="relative">
-                      <HopIcon 
-                        boxSize={6} 
-                        color="gray.600" 
+                      <HopIcon
+                        boxSize={6}
+                        color="gray.600"
                       />
                       <Box
                         position="absolute"
@@ -196,9 +196,9 @@ export const TapCard: React.FC<TapCardProps> = ({ beer }) => {
                           clipPath: `inset(${100 - fillPercentage}% 0 0 0)`
                         }}
                       >
-                        <HopIcon 
-                          boxSize={6} 
-                          color="green.400" 
+                        <HopIcon
+                          boxSize={6}
+                          color="green.400"
                         />
                       </Box>
                     </Box>
