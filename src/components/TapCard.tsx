@@ -6,7 +6,7 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { BeerGlassIcon, HopIcon } from './icons';
-import type { Beer } from '../data/mockBeerData';
+import type { Beer } from '../types/beer';
 import { getSrmColor } from '../utils/srmColors';
 
 interface TapCardProps {
