@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>taplist-frontend</Name>
+  <Repository>tehjrow/taplist-frontend:latest</Repository>
+  <Registry>https://hub.docker.com/r/tehjrow/taplist-frontend/</Registry>
+  <Network>bridge</Network>
+  <WebUI>http://[IP]:[PORT:8080]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/jtowe1/taplist-frontend/main/public/vite.svg</Icon>
+  <Overview>Taplist Frontend — A beer tap list display app built with React and served via nginx. Shows current beers on tap with style, ABV, IBU, and SRM details. NOTE: The backend API URL is baked in at build time. Rebuild the image after updating src/services/api.ts if your backend IP/port changes.</Overview>
+  <Category>MediaApp:Other Tools:</Category>
+  <Date>2026-07-05</Date>
+  <Changes></Changes>
+  <Config Name="Web Port" Target="80" Default="8080" Mode="tcp" Description="Port to access the tap list web UI." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+</Container>
