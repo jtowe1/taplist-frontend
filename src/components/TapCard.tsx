@@ -41,16 +41,16 @@ export const TapCard = ({ beer, isLast }: TapCardProps) => {
       />
 
       {/* Tap number */}
-      <Flex align="baseline" gap={2} mb={4}>
-        <Text fontSize="11px" fontWeight="700" letterSpacing="0.25em" color="rgba(244,160,55,0.4)" textTransform="uppercase">Tap</Text>
-        <Text fontFamily="'Oswald', sans-serif" fontSize="38px" fontWeight="700" lineHeight={1} color="rgba(255,255,255,0.1)">{beer.tapNumber}</Text>
+      <Flex align="baseline" gap={2} mb={6}>
+        <Text fontSize="1.8vw" fontWeight="700" letterSpacing="0.25em" color="rgba(244,160,55,0.4)" textTransform="uppercase">Tap</Text>
+        <Text fontFamily="'Oswald', sans-serif" fontSize="6vw" fontWeight="700" lineHeight={1} color="rgba(255,255,255,0.1)">{beer.tapNumber}</Text>
       </Flex>
 
       {/* Beer name */}
       <Box flex={1}>
         <Text
           fontFamily="'Oswald', sans-serif"
-          fontSize="clamp(28px, 3vw, 56px)"
+          fontSize="4.5vw"
           fontWeight="700"
           lineHeight={1.05}
           color="#FFFFFF"
@@ -69,16 +69,16 @@ export const TapCard = ({ beer, isLast }: TapCardProps) => {
       {/* Bottom section */}
       <Box>
         {/* Divider */}
-        <Box mb={5} h="1px" style={{ background: `linear-gradient(90deg, ${srmColor}70, transparent 80%)` }} />
+        <Box mb={6} h="2px" style={{ background: `linear-gradient(90deg, ${srmColor}70, transparent 80%)` }} />
 
         {/* Style badge */}
-        <Box mb={4}>
+        <Box mb={5}>
           <Box
             display="inline-block"
-            px={3} py="5px"
+            px={4} py={2}
             borderRadius="full"
             border="1px solid rgba(244,160,55,0.3)"
-            fontSize="11px"
+            fontSize="1.4vw"
             fontWeight="700"
             letterSpacing="0.15em"
             textTransform="uppercase"
@@ -89,22 +89,22 @@ export const TapCard = ({ beer, isLast }: TapCardProps) => {
         </Box>
 
         {/* Stats */}
-        <Flex gap={6} mb={4} align="baseline" flexWrap="wrap">
+        <Flex gap={8} mb={5} align="baseline" flexWrap="wrap">
           <Box>
             <Flex align="baseline" gap={1}>
-              <Text fontFamily="'Oswald', sans-serif" fontSize="clamp(24px, 2.5vw, 44px)" fontWeight="700" lineHeight={1} color={srmColor}>{beer.abv}</Text>
-              <Text fontSize="14px" color="rgba(255,255,255,0.35)" fontWeight="400">%</Text>
+              <Text fontFamily="'Oswald', sans-serif" fontSize="4vw" fontWeight="700" lineHeight={1} color={srmColor}>{beer.abv}</Text>
+              <Text fontSize="1.8vw" color="rgba(255,255,255,0.35)" fontWeight="400">%</Text>
             </Flex>
-            <Text fontSize="10px" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="rgba(255,255,255,0.25)" mt={1}>ABV</Text>
+            <Text fontSize="1.1vw" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="rgba(255,255,255,0.25)" mt={1}>ABV</Text>
           </Box>
 
           {(beer.ibu ?? 0) > 0 && (
             <Box>
               <Flex align="baseline" gap={1}>
-                <Text fontFamily="'Oswald', sans-serif" fontSize="clamp(24px, 2.5vw, 44px)" fontWeight="700" lineHeight={1} color="rgba(255,255,255,0.65)">{beer.ibu}</Text>
-                <Text fontSize="14px" color="rgba(255,255,255,0.3)" fontWeight="400">IBU</Text>
+                <Text fontFamily="'Oswald', sans-serif" fontSize="4vw" fontWeight="700" lineHeight={1} color="rgba(255,255,255,0.65)">{beer.ibu}</Text>
+                <Text fontSize="1.8vw" color="rgba(255,255,255,0.3)" fontWeight="400"> IBU</Text>
               </Flex>
-              <Text fontSize="10px" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="rgba(255,255,255,0.25)" mt={1}>Bitterness</Text>
+              <Text fontSize="1.1vw" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="rgba(255,255,255,0.25)" mt={1}>Bitterness</Text>
             </Box>
           )}
         </Flex>
@@ -114,7 +114,7 @@ export const TapCard = ({ beer, isLast }: TapCardProps) => {
           {beer.description && (
             <Text
               flex={1}
-              fontSize="clamp(12px, 1.1vw, 15px)"
+              fontSize="1.4vw"
               lineHeight="1.6"
               color="rgba(255,255,255,0.38)"
               style={{
