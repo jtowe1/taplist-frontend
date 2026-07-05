@@ -4,8 +4,12 @@
 /* Enhanced Typography */
 html,
 body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-color: #0c0a09;
   color: white;
+  overflow: hidden;
 }
 
 body {
@@ -16,8 +20,8 @@ body {
 }
 
 #root {
+  height: 100%;
   background-color: #0c0a09;
-  min-height: 100vh;
 }
 
 /* Custom Scrollbar for Wall Displays */

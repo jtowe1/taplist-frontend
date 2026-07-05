@@ -1,90 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Container,
-  Grid,
-  Spinner,
-  Alert,
-} from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import { Box, Flex, Spinner } from '@chakra-ui/react';
 import { TapCard } from './TapCard';
 import type { Beer } from '../types/beer';
 import { fetchBeers } from '../services/api';
 
-export const TapList: React.FC = () => {
+export const TapList = () => {
   const [beers, setBeers] = useState<Beer[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const loadBeers = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const beerData = await fetchBeers();
-        setBeers(beerData);
-      } catch (err) {
-        setError('Failed to load beer data');
-        console.error('Error loading beers:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadBeers();
+    fetchBeers()
+      .then(data => setBeers(data.sort((a, b) => a.tapNumber - b.tapNumber)))
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
     return (
-      <Box
-        minH="100vh"
-        bg="gray.950"
-        color="white"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Spinner size="xl" />
-      </Box>
-    );
-  }
-
-  if (error) {
-    return (
-      <Box
-        minH="100vh"
-        bg="gray.950"
-        color="white"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Alert.Root status="error">
-          <Alert.Indicator />
-          <Alert.Title>{error}</Alert.Title>
-        </Alert.Root>
-      </Box>
+      <Flex minH="100vh" bg="#0D0A08" align="center" justify="center">
+        <Spinner color="#F4A037" size="xl" />
+      </Flex>
     );
   }
 
   return (
-    <Box
-      minH="100vh"
-      bg="gray.950"
-      color="white"
-    >
-      {/* Beer Grid - Optimized for Wall Display */}
-      <Container maxW="100%" px={4} py={4}>
-        <Grid
-          templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(5, 1fr)" }}
-          gap={{ base: 4, md: 6, lg: 4 }}
-        >
-          {beers.map((beer) => (
-            <Box key={beer.id}>
-              <TapCard beer={beer} />
-            </Box>
-          ))}
-        </Grid>
-      </Container>
+    <Box position="fixed" top={0} left={0} right={0} bottom={0} bg="#0D0A08" overflow="hidden" display="flex" alignItems="stretch">
+      {beers.map((beer, i) => (
+        <TapCard key={beer.id} beer={beer} isLast={i === beers.length - 1} />
+      ))}
     </Box>
   );
 };
